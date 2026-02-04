@@ -10,7 +10,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-Latest-009688?style=flat&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Latest-47a248?style=flat&logo=mongodb)](https://www.mongodb.com/)
 [![Python](https://img.shields.io/badge/Python-3.8+-3776ab?style=flat&logo=python)](https://python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](#-license)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](LICENSE)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=flat)](#-testing)
 [![Test Coverage](https://img.shields.io/badge/Coverage-90%25-brightgreen?style=flat)](#-testing)
 
