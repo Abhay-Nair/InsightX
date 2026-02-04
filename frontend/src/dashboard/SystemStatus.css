@@ -1,0 +1,149 @@
+.system-status {
+  background: var(--surface);
+  border: 1px solid #1f2547;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.status-header {
+  margin-bottom: 20px;
+}
+
+.status-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.status-indicator.healthy {
+  color: #10b981;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.status-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid #1f2547;
+  border-radius: 10px;
+}
+
+.status-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.status-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.status-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.status-info h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.status-info p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: white;
+  flex-shrink: 0;
+}
+
+.cache-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.cache-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: white;
+}
+
+.cache-btn.secondary {
+  background: transparent;
+  color: var(--primary);
+}
+
+.cache-btn:hover {
+  transform: translateY(-1px);
+}
+
+.cache-btn.secondary:hover {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+@media (max-width: 768px) {
+  .system-status {
+    padding: 20px;
+  }
+  
+  .status-item {
+    padding: 10px;
+  }
+  
+  .cache-actions {
+    flex-direction: column;
+  }
+}

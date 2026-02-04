@@ -1,0 +1,21 @@
+.data-table-wrapper {
+  background: rgba(17,24,39,0.85);
+  border-radius: 16px;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 12px;
+  color: #9ca3af;
+}
+
+td {
+  padding: 12px;
+  border-top: 1px solid #1f2933;
+}

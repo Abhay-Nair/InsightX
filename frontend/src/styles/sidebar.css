@@ -1,0 +1,42 @@
+.sidebar {
+  width: 240px;
+  background: #020617;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand h2 {
+  font-size: 22px;
+}
+
+.sidebar-brand span {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.sidebar-nav {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  color: #9ca3af;
+}
+
+.nav-item.active,
+.nav-item:hover {
+  background: #1f2933;
+  color: white;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+}

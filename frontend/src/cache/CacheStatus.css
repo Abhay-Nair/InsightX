@@ -1,0 +1,126 @@
+.cache-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--card);
+  border: 1px solid #1f2547;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.cache-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.status-icon.hit {
+  color: #10b981;
+}
+
+.status-icon.miss {
+  color: #ef4444;
+}
+
+.status-icon.stale {
+  color: #f59e0b;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.cache-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cache-status-text {
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.cache-details {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.cache-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cache-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: 1px solid #1f2547;
+  border-radius: 4px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cache-action-btn:hover:not(:disabled) {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.cache-action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cache-action-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+.cache-action-btn svg.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .cache-status {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+  
+  .cache-details {
+    font-size: 9px;
+  }
+  
+  .cache-action-btn {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .cache-action-btn svg {
+    width: 10px;
+    height: 10px;
+  }
+}

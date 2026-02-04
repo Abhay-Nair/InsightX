@@ -1,0 +1,262 @@
+# InsightX - Comprehensive .gitignore
+
+# ===== ENVIRONMENT & SECRETS =====
+.env
+.env.local
+.env.production
+.env.staging
+*.key
+*.pem
+*.p12
+secrets/
+
+# ===== PYTHON/BACKEND =====
+# Virtual environments
+backend/venv/
+backend/.venv/
+backend/env/
+backend/.env/
+venv/
+.venv/
+env/
+.env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# ===== NODE.JS/FRONTEND =====
+# Dependencies
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build outputs
+frontend/dist/
+frontend/dist-ssr/
+frontend/build/
+*.local
+
+# ===== DATABASES =====
+# MongoDB
+*.db
+*.sqlite
+*.sqlite3
+data/
+mongodb_data/
+
+# ===== LOGS =====
+logs/
+*.log
+backend/logs/*.log
+*.log.*
+
+# ===== UPLOADS & DATA =====
+# User uploaded files
+backend/uploaded_datasets/*.csv
+backend/uploaded_datasets/*.xlsx
+backend/uploaded_datasets/*.xls
+backend/uploads/
+uploads/
+temp/
+tmp/
+
+# Keep example files but ignore actual data
+!backend/uploaded_datasets/.gitkeep
+!backend/uploads/.gitkeep
+
+# ===== CACHE & TEMPORARY =====
+.cache/
+.temp/
+.tmp/
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# ===== IDE & EDITOR =====
+# VSCode
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# IntelliJ/PyCharm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ===== OPERATING SYSTEM =====
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ===== DOCUMENTATION (PRIVATE) =====
+# Interview and internal documentation
+INTERVIEW_QUESTIONS.md
+APP_KNOWLEDGE_GUIDE.md
+PROJECT_COMPLETE_INFO.md
+FINAL_SYSTEM_STATUS.md
+CLEANUP_AND_ORGANIZATION_SUMMARY.md
+SECURITY_DEPLOYMENT_GUIDE.md
+DEPLOYMENT_CHECKLIST.md
+CALCULATIONS_AND_CHARTS_GUIDE.md
+ARCHITECTURE_STATUS.md
+YOUR_ACTION_PLAN.md
+
+# ===== TEST & DEVELOPMENT =====
+# Test outputs
+test_report.json
+*.test.js
+*.spec.js
+coverage/
+.nyc_output/
+
+# Development files
+*.dev
+*.development
+debug.log
+error.log
+
+# ===== DEPLOYMENT =====
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Kubernetes
+*.yaml.local
+*.yml.local
+
+# ===== BACKUP & ARCHIVE =====
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+*.swp
+*.tmp
+*.zip
+*.tar.gz
+*.rar
+
+# ===== SECURITY =====
+# SSL certificates
+*.crt
+*.key
+*.pem
+*.p12
+*.pfx
+
+# API keys and tokens
+.api_keys
+.tokens
+auth_config.json
+
+# ===== MISC =====
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# R
+.Rhistory
+.RData
+.Ruserdata
+
+# MATLAB
+*.asv
+*.m~
+
+# Sass
+.sass-cache/
+*.css.map
+
+# Webpack
+webpack-stats.json

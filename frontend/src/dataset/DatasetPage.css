@@ -1,0 +1,179 @@
+.dataset-page {
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dataset-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #1f2547;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  color: var(--primary);
+}
+
+.back-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.dataset-title h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.dataset-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.action-btn.primary {
+  background: var(--primary);
+  color: white;
+}
+
+.action-btn.primary:hover:not(:disabled) {
+  background: #5856eb;
+  transform: translateY(-1px);
+}
+
+.action-btn.secondary {
+  background: transparent;
+  border-color: #1f2547;
+  color: var(--text);
+}
+
+.action-btn.secondary:hover {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.action-btn svg.spinning {
+  animation: spin 1s linear infinite;
+}
+
+.dataset-loading,
+.dataset-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 16px;
+}
+
+.loading-spinner {
+  font-size: 32px;
+  animation: spin 2s linear infinite;
+}
+
+.dataset-error h3 {
+  font-size: 20px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.dataset-error button {
+  padding: 12px 24px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .dataset-page {
+    padding: 16px;
+  }
+  
+  .dataset-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  
+  .header-actions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .dataset-title h1 {
+    font-size: 20px;
+  }
+  
+  .dataset-meta {
+    font-size: 12px;
+  }
+}

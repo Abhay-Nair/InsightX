@@ -1,0 +1,138 @@
+.charts-section {
+  width: 100%;
+  padding: 0;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px;
+  margin: 0;
+}
+
+.chart-card {
+  background: var(--card);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chart-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #6366f1;
+}
+
+.chart-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 20px 0;
+  text-align: center;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.chart-container {
+  position: relative;
+  height: 320px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-container canvas {
+  max-height: 320px !important;
+  max-width: 100% !important;
+}
+
+.charts-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+  padding: 40px;
+  background: var(--card);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 24px;
+  opacity: 0.5;
+}
+
+.charts-empty h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.charts-empty p {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 400px;
+}
+
+/* Ensure charts render properly */
+.chart-card .chart-container > div {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Fix chart.js responsive issues */
+.chart-container .chartjs-render-monitor {
+  animation: none !important;
+}
+
+@media (max-width: 1024px) {
+  .charts-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .chart-card {
+    padding: 20px;
+  }
+  
+  .chart-container {
+    height: 280px;
+  }
+  
+  .chart-container canvas {
+    max-height: 280px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-card {
+    padding: 16px;
+  }
+  
+  .chart-container {
+    height: 250px;
+  }
+  
+  .chart-container canvas {
+    max-height: 250px !important;
+  }
+  
+  .chart-title {
+    font-size: 14px;
+  }
+}

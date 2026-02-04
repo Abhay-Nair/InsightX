@@ -1,0 +1,15 @@
+.dashboard-container {
+  max-width: 1400px;
+  margin: auto;
+  padding: 28px;
+}
+
+.dashboard-header {
+  margin-bottom: 28px;
+}
+
+.dashboard-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}

@@ -1,0 +1,290 @@
+.ai-insights {
+  width: 100%;
+}
+
+.insights-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.header-content h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.header-content p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.insights-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.insight-card {
+  background: var(--card);
+  border: 1px solid #1f2547;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.summary-card {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(34, 211, 238, 0.1));
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.card-header svg {
+  width: 18px;
+  height: 18px;
+  color: var(--primary);
+}
+
+.card-header h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.summary-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.column-insights {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.insight-item {
+  display: flex;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 3px solid;
+}
+
+.insight-item.warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-left-color: #f59e0b;
+}
+
+.insight-item.info {
+  background: rgba(99, 102, 241, 0.1);
+  border-left-color: var(--primary);
+}
+
+.insight-item.error {
+  background: rgba(239, 68, 68, 0.1);
+  border-left-color: #ef4444;
+}
+
+.insight-column {
+  font-weight: 600;
+  color: var(--text);
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
+.insight-message {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.anomalies-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.anomaly-item {
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 3px solid;
+}
+
+.anomaly-item.warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-left-color: #f59e0b;
+}
+
+.anomaly-item.error {
+  background: rgba(239, 68, 68, 0.1);
+  border-left-color: #ef4444;
+}
+
+.anomaly-item h5 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.anomaly-item p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.recommendations-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recommendations-list li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.recommendations-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.insights-placeholder,
+.ai-insights-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  text-align: center;
+  padding: 40px;
+  background: var(--card);
+  border: 1px solid #1f2547;
+  border-radius: 12px;
+}
+
+.placeholder-icon,
+.empty-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.insights-placeholder h4,
+.ai-insights-empty h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.insights-placeholder p,
+.ai-insights-empty p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+@media (max-width: 768px) {
+  .insights-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  
+  .insight-card {
+    padding: 16px;
+  }
+  
+  .insight-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .insight-column {
+    min-width: auto;
+  }
+}
+/* Business Insights Styles */
+.business-insights {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.business-insight-item {
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid #1f2547;
+  border-radius: 8px;
+  border-left: 3px solid var(--primary);
+}
+
+.business-insight-item h5 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.business-insight-item p {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Enhanced placeholder text */
+.insights-placeholder p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Improved summary card styling */
+.summary-card .summary-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  font-weight: 400;
+}
+
+/* Better spacing for recommendations */
+.recommendations-list li {
+  margin-bottom: 4px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .business-insight-item {
+    padding: 12px;
+  }
+  
+  .business-insight-item h5 {
+    font-size: 12px;
+  }
+  
+  .business-insight-item p {
+    font-size: 13px;
+  }
+}
