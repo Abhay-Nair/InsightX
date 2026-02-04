@@ -170,9 +170,9 @@ npm run dev
 ```
 
 ### **4. Access Application**
-- **Frontend**: http://localhost:5173
-- **Backend API**: http://localhost:8000
-- **API Documentation**: http://localhost:8000/docs
+- **Frontend**: [http://localhost:5173](http://localhost:5173)
+- **Backend API**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- **API Documentation**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 ### **5. Test with Sample Data**
 ```bash
@@ -195,8 +195,8 @@ python comprehensive_test.py
 - **[Architecture Status](ARCHITECTURE_STATUS.md)** - Technical architecture details
 
 ### **🔧 API Documentation**
-- **Interactive API Docs**: http://localhost:8000/docs
-- **OpenAPI Specification**: http://localhost:8000/openapi.json
+- **Interactive API Docs**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- **OpenAPI Specification**: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json)
 - **Authentication**: JWT-based with refresh tokens
 - **Rate Limiting**: 100 requests per minute per user
 
