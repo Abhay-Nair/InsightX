@@ -417,7 +417,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### **Getting Help**
 - **📖 Documentation**: Check our comprehensive guides in the repository
 - **🐛 Issues**: Report bugs on [GitHub Issues](https://github.com/Abhay-Nair/InsightX/issues)
-- **💬 Discussions**: Join our [GitHub Discussions](https://github.com/Abhay-Nair/InsightX/discussions)
+- **💬 Questions**: Ask questions in [GitHub Issues](https://github.com/Abhay-Nair/InsightX/issues) with the "question" label
 
 ### **Community**
 - **GitHub**: [InsightX Analytics](https://github.com/Abhay-Nair/InsightX)
