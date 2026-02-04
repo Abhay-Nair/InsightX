@@ -10,9 +10,9 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-Latest-009688?style=flat&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Latest-47a248?style=flat&logo=mongodb)](https://www.mongodb.com/)
 [![Python](https://img.shields.io/badge/Python-3.8+-3776ab?style=flat&logo=python)](https://python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](LICENSE)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=flat)](.)
-[![Test Coverage](https://img.shields.io/badge/Coverage-90%25-brightgreen?style=flat)](.)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](#-license)
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=flat)](#-testing)
+[![Test Coverage](https://img.shields.io/badge/Coverage-90%25-brightgreen?style=flat)](#-testing)
 
 [🚀 Quick Start](#-quick-start) • [📊 Features](#-features) • [🏗️ Architecture](#️-architecture) • [📖 Documentation](#-documentation) • [🔧 Development](#-development)
 
@@ -134,8 +134,8 @@ graph TD
 
 ### **1. Clone Repository**
 ```bash
-git clone https://github.com/your-username/insightx-analytics.git
-cd insightx-analytics
+git clone https://github.com/Abhay-Nair/InsightX.git
+cd InsightX
 ```
 
 ### **2. Backend Setup**
@@ -177,7 +177,7 @@ npm run dev
 ### **5. Test with Sample Data**
 ```bash
 # Run analytics verification
-python test_analytics.py
+python comprehensive_test.py
 
 # Expected output:
 # ✅ All backend calculations verified!
@@ -190,9 +190,9 @@ python test_analytics.py
 
 ### **📚 Comprehensive Guides**
 - **[Setup Instructions](SETUP_INSTRUCTIONS.md)** - Detailed installation guide
-- **[Project FAQ](PROJECT_FAQ.md)** - Common questions and answers
+- **[Project Information](PROJECT_COMPLETE_INFO.md)** - Complete project overview
 - **[Calculations Guide](CALCULATIONS_AND_CHARTS_GUIDE.md)** - Analytics methodology
-- **[Backend Optimization](BACKEND_OPTIMIZATION_COMPLETE.md)** - Technical details
+- **[Architecture Status](ARCHITECTURE_STATUS.md)** - Technical architecture details
 
 ### **🔧 API Documentation**
 - **Interactive API Docs**: http://localhost:8000/docs
@@ -229,37 +229,15 @@ python test_analytics.py
 
 ---
 
-## 🎨 Screenshots
-
-### **Dashboard Overview**
-![Dashboard](docs/screenshots/dashboard.png)
-*Main analytics dashboard with KPI cards and health scoring*
-
-### **Interactive Charts**
-![Charts](docs/screenshots/charts.png)
-*Travel approval analysis with interactive visualizations*
-
-### **AI Insights**
-![AI Insights](docs/screenshots/ai-insights.png)
-*Context-aware recommendations and business intelligence*
-
-### **Data Quality Assessment**
-![Data Quality](docs/screenshots/data-quality.png)
-*Comprehensive data health scoring and recommendations*
-
----
-
 ## 🛠️ Development
 
 ### **Project Structure**
 ```
-insightx-analytics/
+InsightX/
 ├── frontend/              # React application
 ├── backend/              # FastAPI server
 ├── docs/                 # Documentation
-├── data-samples/         # Sample datasets
-├── test_analytics.py     # Backend verification
-├── test_api.py          # API testing
+├── comprehensive_test.py # Backend verification
 └── README.md            # This file
 ```
 
@@ -293,22 +271,21 @@ npm run lint         # Run ESLint
 #### **Backend Development**
 ```bash
 cd backend
-python start_server.py    # Start development server
-python test_analytics.py  # Test analytics calculations
-python test_api.py        # Test API endpoints
+python start_server.py      # Start development server
+python comprehensive_test.py # Test analytics calculations
 ```
 
 ### **Environment Variables**
 ```bash
-# Backend (.env)
-MONGODB_URL=mongodb://localhost:27017/insightx
-JWT_SECRET_KEY=your-secret-key-here
-JWT_ALGORITHM=HS256
-JWT_EXPIRE_MINUTES=30
+# Backend (.env) - Copy from .env.example
+MONGODB_URL=mongodb://localhost:27017/
+DB_NAME=InsightX
+SECRET_KEY=your-secret-key-here
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=60
 
-# Frontend (.env)
-VITE_API_URL=http://localhost:8000
-VITE_APP_NAME=InsightX Analytics
+# Frontend - No environment variables needed for development
+# All configuration is handled in the backend
 ```
 
 ---
@@ -386,13 +363,11 @@ npm run build
 ### **Automated Testing**
 ```bash
 # Backend Tests
-python test_analytics.py     # Analytics calculations
-python test_api.py          # API endpoints
+python comprehensive_test.py   # Analytics calculations
 
 # Frontend Tests
 cd frontend
-npm run test               # Jest unit tests
-npm run test:e2e          # Cypress integration tests
+npm run dev                   # Start development server
 ```
 
 ### **Test Coverage**
@@ -405,7 +380,7 @@ npm run test:e2e          # Cypress integration tests
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+We welcome contributions! Please follow these steps:
 
 ### **Development Workflow**
 1. **Fork** the repository
@@ -440,22 +415,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 ### **Getting Help**
-- **📖 Documentation**: Check our comprehensive guides
-- **🐛 Issues**: Report bugs on GitHub Issues
-- **💬 Discussions**: Join our GitHub Discussions
-- **📧 Email**: support@insightx-analytics.com
+- **📖 Documentation**: Check our comprehensive guides in the repository
+- **🐛 Issues**: Report bugs on [GitHub Issues](https://github.com/Abhay-Nair/InsightX/issues)
+- **💬 Discussions**: Join our [GitHub Discussions](https://github.com/Abhay-Nair/InsightX/discussions)
 
 ### **Community**
-- **GitHub**: [InsightX Analytics](https://github.com/your-username/insightx-analytics)
-- **Discord**: [Join our community](https://discord.gg/insightx)
-- **Twitter**: [@InsightXAnalytics](https://twitter.com/insightxanalytics)
+- **GitHub**: [InsightX Analytics](https://github.com/Abhay-Nair/InsightX)
+- **Repository**: [https://github.com/Abhay-Nair/InsightX](https://github.com/Abhay-Nair/InsightX)
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by the InsightX Team**
+**Made with ❤️ by Abhay Nair**
 
-[⭐ Star us on GitHub](https://github.com/your-username/insightx-analytics) • [🐛 Report Bug](https://github.com/your-username/insightx-analytics/issues) • [✨ Request Feature](https://github.com/your-username/insightx-analytics/issues)
+[⭐ Star us on GitHub](https://github.com/Abhay-Nair/InsightX) • [🐛 Report Bug](https://github.com/Abhay-Nair/InsightX/issues) • [✨ Request Feature](https://github.com/Abhay-Nair/InsightX/issues)
 
 </div>
