@@ -126,3 +126,223 @@
   border-radius: 14px;
   background: rgba(255,255,255,0.07);
 }
+/* Enhanced Analytics Tabs */
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Outlier Analysis Styles */
+.outlier-analysis {
+  padding: 1rem;
+}
+
+.outlier-summary {
+  background: var(--surface);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.outlier-summary h3 {
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.summary-card {
+  background: var(--card);
+  border: 1px solid var(--color-border-secondary);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  text-align: center;
+}
+
+.summary-label {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summary-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.severity-high {
+  color: var(--color-error-600) !important;
+}
+
+.severity-moderate {
+  color: var(--color-warning-600) !important;
+}
+
+.severity-low {
+  color: var(--color-success-600) !important;
+}
+
+.severity-minimal {
+  color: var(--color-primary-600) !important;
+}
+
+.outlier-recommendations {
+  background: var(--surface);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.outlier-recommendations h4 {
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.outlier-recommendations ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.outlier-recommendations li {
+  padding: 0.5rem 0;
+  color: var(--text);
+  border-bottom: 1px solid var(--color-border-secondary);
+}
+
+.outlier-recommendations li:last-child {
+  border-bottom: none;
+}
+
+.outlier-recommendations li::before {
+  content: "💡 ";
+  margin-right: 0.5rem;
+}
+
+.outliers-by-column {
+  background: var(--surface);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.outliers-by-column h4 {
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.column-outliers {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-secondary);
+}
+
+.column-outliers h5 {
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.outlier-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.method-result {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-primary);
+}
+
+.method-name {
+  font-size: 0.875rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.outlier-count {
+  font-size: 0.875rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.loading-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+/* Enhanced Insight Cards */
+.insight-card.success {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: var(--color-success-400);
+  color: var(--color-success-700);
+}
+
+:root[data-theme="light"] .insight-card.success {
+  color: var(--color-success-800);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .analytics-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .header-left {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .outlier-methods {
+    flex-direction: column;
+  }
+}

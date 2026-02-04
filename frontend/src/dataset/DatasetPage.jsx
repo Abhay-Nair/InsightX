@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import AppLayout from "../layout/AppLayout"
 import DatasetTabs from "./DatasetTabs"
 import CacheStatus from "../cache/CacheStatus"
+import ExportButton from "../components/ExportButton"
 import { getUserDatasets, getDatasetAnalytics } from "../api/api"
 import { FiArrowLeft, FiDownload, FiRefreshCw } from "react-icons/fi"
 import "./DatasetPage.css"
@@ -83,7 +84,7 @@ function DatasetPage() {
 
   return (
     <AppLayout>
-      <div className="dataset-page">
+      <div className="dataset-page" id="analytics-dashboard">
         <div className="dataset-header">
           <div className="header-left">
             <button 
@@ -119,10 +120,7 @@ function DatasetPage() {
               loading={analyticsLoading}
             />
             
-            <button className="action-btn secondary">
-              <FiDownload />
-              Export
-            </button>
+            <ExportButton analytics={analytics} datasetName={dataset.filename} />
             
             <button 
               className="action-btn primary"

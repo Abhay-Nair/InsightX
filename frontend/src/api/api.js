@@ -331,3 +331,66 @@ export const deleteDataset = async (datasetId) => {
 };
 
 export default api;
+// Enhanced Analytics API functions
+export const getCorrelationAnalysis = async (datasetId) => {
+  try {
+    // Validate dataset ID format
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(datasetId)) {
+      throw new Error('Invalid dataset ID');
+    }
+    
+    const response = await api.get(`/analytics/${datasetId}/correlation`);
+    return response.data;
+  } catch (error) {
+    console.error('Get correlation analysis error:', error.response?.data || error.message);
+    
+    if (error.response?.status === 404) {
+      throw new Error('Dataset not found');
+    }
+    
+    throw new Error('Failed to load correlation analysis');
+  }
+};
+
+export const getOutlierAnalysis = async (datasetId) => {
+  try {
+    // Validate dataset ID format
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(datasetId)) {
+      throw new Error('Invalid dataset ID');
+    }
+    
+    const response = await api.get(`/analytics/${datasetId}/outliers`);
+    return response.data;
+  } catch (error) {
+    console.error('Get outlier analysis error:', error.response?.data || error.message);
+    
+    if (error.response?.status === 404) {
+      throw new Error('Dataset not found');
+    }
+    
+    throw new Error('Failed to load outlier analysis');
+  }
+};
+
+export const refreshAnalyticsCache = async (datasetId) => {
+  try {
+    // Validate dataset ID format
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(datasetId)) {
+      throw new Error('Invalid dataset ID');
+    }
+    
+    const response = await api.post(`/analytics/${datasetId}/refresh`);
+    return response.data;
+  } catch (error) {
+    console.error('Refresh analytics cache error:', error.response?.data || error.message);
+    
+    if (error.response?.status === 404) {
+      throw new Error('Dataset not found');
+    }
+    
+    throw new Error('Failed to refresh analytics cache');
+  }
+};

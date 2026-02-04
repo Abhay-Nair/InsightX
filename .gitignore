@@ -82,7 +82,6 @@ frontend/build/
 *.db
 *.sqlite
 *.sqlite3
-data/
 mongodb_data/
 
 # ===== LOGS =====
