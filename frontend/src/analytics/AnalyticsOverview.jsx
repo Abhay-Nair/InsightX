@@ -134,7 +134,11 @@ const AnalyticsOverview = () => {
                   <div className="metric">
                     <span className="metric-label">Size</span>
                     <span className="metric-value">
-                      {dataset.file_size ? `${(dataset.file_size / 1024).toFixed(1)} KB` : 'N/A'}
+                      {dataset.file_size 
+                      ? dataset.file_size < 1024 * 1024 
+                        ? `${(dataset.file_size / 1024).toFixed(1)} KB`
+                        : `${(dataset.file_size / 1024 / 1024).toFixed(2)} MB`
+                      : 'Unknown'}
                     </span>
                   </div>
                 </div>

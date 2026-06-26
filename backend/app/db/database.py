@@ -1,9 +1,12 @@
 from pymongo import MongoClient
+from dotenv import load_dotenv
 import os
 
+load_dotenv()
+
 # MongoDB connection
-MONGODB_URL = os.getenv("MONGODB_URL", "mongodb://localhost:27017/")
-DB_NAME = os.getenv("DB_NAME", "InsightX")  # Match documentation
+MONGODB_URL = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
+DB_NAME = os.getenv("MONGO_DB_NAME", "InsightX_db")
 
 try:
     client = MongoClient(MONGODB_URL)

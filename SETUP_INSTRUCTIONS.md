@@ -37,11 +37,17 @@ sudo systemctl enable mongod
 # Navigate to backend directory
 cd backend
 
-# Install Python dependencies
+# from the backend folder
+py -3.13 -m venv venv
+venv\Scripts\activate
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 
+# Install Python dependencies
+python -m pip install -r requirements.txt
+
 # Start the backend server
-python start_server.py
+python -m uvicorn app.main:app --reload
 ```
 
 The startup script will:

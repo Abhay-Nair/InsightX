@@ -1,9 +1,79 @@
 .correlation-matrix-container {
-  background: var(--surface);
-  border: 1px solid var(--color-border-primary);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  background: #1e1e2f;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  overflow-x: auto;
+}
+
+.correlation-header {
+  margin-bottom: 20px;
+}
+
+.correlation-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.correlation-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: fit-content;
+}
+
+.matrix-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.row-label {
+  width: 120px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: right;
+  color: #e5e7eb;
+  padding-right: 10px;
+}
+
+.matrix-cells {
+  display: flex;
+  gap: 4px;
+}
+
+.matrix-cell {
+  width: 65px;
+  height: 65px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.matrix-cell:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.column-labels {
+  display: flex;
+  margin-left: 130px;
+  gap: 4px;
+}
+
+.column-label {
+  width: 65px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e5e7eb;
+  word-break: break-word;
 }
 
 .correlation-header {
@@ -61,24 +131,6 @@
   background: linear-gradient(to right, rgba(239, 68, 68, 0.8), rgba(59, 130, 246, 0.8));
 }
 
-.correlation-matrix {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
-.matrix-grid {
-  display: grid;
-  gap: 1px;
-  background: var(--color-border-primary);
-  border: 1px solid var(--color-border-primary);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  max-width: 500px;
-  max-height: 500px;
-}
-
 .matrix-cell {
   aspect-ratio: 1;
   display: flex;
@@ -103,51 +155,6 @@
   font-weight: 600;
   color: white;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.matrix-labels {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-}
-
-.x-labels {
-  position: absolute;
-  top: -30px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-around;
-}
-
-.y-labels {
-  position: absolute;
-  left: -80px;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 70px;
-}
-
-.label {
-  font-size: 0.75rem;
-  color: var(--muted);
-  font-weight: 500;
-}
-
-.x-label {
-  transform: rotate(-45deg);
-  transform-origin: center;
-}
-
-.y-label {
-  text-align: right;
-  padding-right: 0.5rem;
 }
 
 .strong-correlations {

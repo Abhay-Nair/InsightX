@@ -6,6 +6,7 @@ import DataTable from './DataTable'
 import ExportButton from './ExportButton'
 import CorrelationMatrix from './CorrelationMatrix'
 import { motion } from "framer-motion"
+import SmartRecommendations from "../ai/SmartRecommendations"
 
 
 function AnalyticsDashboard({ dataset, onBack }) {
@@ -196,6 +197,8 @@ function AnalyticsDashboard({ dataset, onBack }) {
         {activeTab === 'data' && (
           <DataTable dataset={dataset} />
         )}
+
+        <SmartRecommendations analytics={analytics} />
       </div>
     </div>
   )

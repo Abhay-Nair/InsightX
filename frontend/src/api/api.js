@@ -8,20 +8,8 @@ import { getToken, getRefreshToken, saveTokens, logout, checkTokenExpiration } f
 
 // Determine base URL based on environment
 const getBaseURL = () => {
-  if (typeof window !== 'undefined') {
-    const protocol = window.location.protocol;
-    const hostname = window.location.hostname;
-    
-    // In production, enforce HTTPS
-    if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
-      return `https://${hostname}:8000`;
-    }
-  }
-  
-  // Development fallback
-  return "http://127.0.0.1:8000";
+  return import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 };
-
 const api = axios.create({
   baseURL: getBaseURL(),
   timeout: 30000, // 30 second timeout

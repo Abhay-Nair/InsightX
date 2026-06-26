@@ -136,7 +136,10 @@ function DatasetUpload({ onUploadSuccess }) {
             <div className="file-icon">📄</div>
             <div className="file-meta">
               <p><strong>{file.name}</strong></p>
-              <p>Size: {(file.size / 1024 / 1024).toFixed(2)} MB</p>
+              <p>Size: {file.size < 1024 * 1024 
+                ? `${(file.size / 1024).toFixed(1)} KB` 
+                : `${(file.size / 1024 / 1024).toFixed(2)} MB`}
+              </p>
               <p>Modified: {new Date(file.lastModified).toLocaleDateString()}</p>
             </div>
           </div>

@@ -48,6 +48,32 @@
   gap: 16px;
 }
 
+.upload-submit {
+  width: 100%;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 12px;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.upload-submit:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.upload-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .loading-spinner {
   font-size: 32px;
   animation: spin 2s linear infinite;

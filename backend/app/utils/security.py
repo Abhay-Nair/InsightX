@@ -2,10 +2,15 @@ from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from jose import jwt
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-SECRET_KEY = os.getenv("SECRET_KEY", "INSIGHTX_SUPER_SECRET_KEY_CHANGE_IN_PRODUCTION")
+SECRET_KEY = os.getenv("SECRET_KEY")
+if not SECRET_KEY:
+    raise RuntimeError("SECRET_KEY environment variable is not set!")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 

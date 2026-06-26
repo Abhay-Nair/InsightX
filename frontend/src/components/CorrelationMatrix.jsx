@@ -4,6 +4,26 @@ import './CorrelationMatrix.css';
 const CorrelationMatrix = ({ correlationData }) => {
   const { correlation_matrix, strong_correlations, correlation_summary } = correlationData || {};
 
+  const getCorrelationStrength = (absValue) => {
+    if (absValue >= 0.9) return 'very-strong';
+    if (absValue >= 0.7) return 'strong';
+    if (absValue >= 0.5) return 'moderate';
+    if (absValue >= 0.3) return 'weak';
+    return 'very-weak';
+  };
+
+  const getCorrelationColor = (value) => {
+    if (value === null || value === undefined) return '#374151';
+
+    const intensity = Math.abs(value);
+
+    if (value > 0) {
+      return `rgba(59, 130, 246, ${intensity})`;
+    } else {
+      return `rgba(239, 68, 68, ${intensity})`;
+    }
+  };
+
   const matrixData = useMemo(() => {
     try {
       if (!correlation_matrix) {
@@ -11,7 +31,7 @@ const CorrelationMatrix = ({ correlationData }) => {
       }
 
       const columns = Object.keys(correlation_matrix);
-      
+
       if (columns.length === 0) {
         return null;
       }
@@ -21,6 +41,7 @@ const CorrelationMatrix = ({ correlationData }) => {
       columns.forEach((col1, i) => {
         columns.forEach((col2, j) => {
           const value = correlation_matrix[col1]?.[col2];
+
           if (value !== null && value !== undefined) {
             matrix.push({
               x: j,
@@ -35,35 +56,18 @@ const CorrelationMatrix = ({ correlationData }) => {
       });
 
       return { matrix, columns };
+
     } catch (error) {
+      console.error("Correlation matrix error:", error);
       return null;
     }
   }, [correlation_matrix]);
 
-  const getCorrelationStrength = (absValue) => {
-    if (absValue >= 0.9) return 'very-strong';
-    if (absValue >= 0.7) return 'strong';
-    if (absValue >= 0.5) return 'moderate';
-    if (absValue >= 0.3) return 'weak';
-    return 'very-weak';
-  };
-
-  const getCorrelationColor = (value) => {
-    if (value === null || value === undefined) return '#f0f0f0';
-    
-    const intensity = Math.abs(value);
-    if (value > 0) {
-      // Positive correlation - blue scale
-      return `rgba(59, 130, 246, ${intensity})`;
-    } else {
-      // Negative correlation - red scale
-      return `rgba(239, 68, 68, ${intensity})`;
-    }
-  };
-
-  if (!matrixData) {
-    return (
-      <div className="correlation-matrix-empty">
+  console.log("MATRIX DATA:", matrixData)
+  console.log("RAW CORRELATION MATRIX:", correlation_matrix)
+  if (!matrixData || !matrixData.matrix || matrixData.matrix.length === 0) {
+  return (
+        <div className="correlation-matrix-empty">
         <div className="empty-icon">📊</div>
         <h3>No Correlation Data</h3>
         <p>Not enough numeric columns for correlation analysis</p>
@@ -98,45 +102,43 @@ const CorrelationMatrix = ({ correlationData }) => {
         </div>
 
         <div className="correlation-matrix">
-          <div className="matrix-grid" style={{ 
-            gridTemplateColumns: `repeat(${columns.length}, 1fr)`,
-            gridTemplateRows: `repeat(${columns.length}, 1fr)`
-          }}>
-            {matrix.map((cell, index) => (
-              <div
-                key={index}
-                className={`matrix-cell ${cell.strength}`}
-                style={{ 
-                  backgroundColor: getCorrelationColor(cell.value),
-                  gridColumn: cell.x + 1,
-                  gridRow: cell.y + 1
-                }}
-                title={`${cell.col1} vs ${cell.col2}: ${cell.value?.toFixed(3) || 'N/A'}`}
-              >
-                <span className="cell-value">
-                  {cell.value?.toFixed(2) || 'N/A'}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div className="matrix-labels">
-            <div className="x-labels">
-              {columns.map((col, index) => (
-                <div key={index} className="label x-label" title={col}>
-                  {col.length > 8 ? col.substring(0, 8) + '...' : col}
-                </div>
-              ))}
+        <div className="column-labels">
+          {columns.map((col, index) => (
+            <div key={index} className="column-label">
+              {col}
             </div>
-            <div className="y-labels">
-              {columns.map((col, index) => (
-                <div key={index} className="label y-label" title={col}>
-                  {col.length > 8 ? col.substring(0, 8) + '...' : col}
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
+
+        {columns.map((row, rowIndex) => (
+          <div key={rowIndex} className="matrix-row">
+
+            <div className="row-label">
+              {row}
+            </div>
+
+            <div className="matrix-cells">
+              {columns.map((col, colIndex) => {
+                const value = correlation_matrix[row]?.[col]
+
+                return (
+                  <div
+                    key={colIndex}
+                    className="matrix-cell"
+                    style={{
+                      backgroundColor: getCorrelationColor(value)
+                    }}
+                    title={`${row} vs ${col}: ${value?.toFixed(3)}`}
+                  >
+                    {value?.toFixed(2)}
+                  </div>
+                )
+              })}
+            </div>
+
+          </div>
+        ))}
+      </div>
 
         {strong_correlations && strong_correlations.length > 0 && (
           <div className="strong-correlations">

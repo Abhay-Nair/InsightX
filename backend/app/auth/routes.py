@@ -1,4 +1,5 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends,Request
+from app.core.limiter import limiter
 from fastapi.security import OAuth2PasswordRequestForm
 from app.auth.models import UserCreate
 from app.db.database import get_db
@@ -40,7 +41,8 @@ def register(user: UserCreate):
         raise HTTPException(status_code=500, detail="Internal server error during registration")
 
 @router.post("/login")
-def login(form_data: OAuth2PasswordRequestForm = Depends()):
+@limiter.limit("5/minute")
+async def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
     try:
         db = get_db()
         users = db.users

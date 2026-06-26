@@ -201,12 +201,6 @@ function OverviewTab({ dataset, analytics }) {
 
 export default DatasetTabs
 function CorrelationsTab({ analytics }) {
-  // Check if correlation analysis exists and has data
-  const hasCorrelationData = analytics?.correlation_analysis?.correlation_matrix && 
-    Object.keys(analytics.correlation_analysis.correlation_matrix).length > 0;
-  
-  const hasAssociationData = analytics?.categorical_associations?.strong_associations && 
-    analytics.categorical_associations.strong_associations.length > 0;
 
   if (!analytics) {
     return (
@@ -218,55 +212,42 @@ function CorrelationsTab({ analytics }) {
     )
   }
 
-  if (!hasCorrelationData && !hasAssociationData) {
-    return (
-      <div className="tab-empty">
-        <div className="empty-icon">📊</div>
-        <h3>No Correlations Found</h3>
-        <p>This dataset doesn't have enough numeric columns for correlation analysis, or correlations are very weak.</p>
-        <div className="empty-suggestions">
-          <h4>Possible reasons:</h4>
-          <ul>
-            <li>Dataset has fewer than 2 numeric columns</li>
-            <li>All correlations are very weak (|r| &lt; 0.3)</li>
-            <li>Data contains too many missing values</li>
-          </ul>
-        </div>
-      </div>
-    )
-  }
+  console.log("FULL ANALYTICS:", analytics)
+  console.log("CORRELATION ANALYSIS:", analytics?.correlation_analysis)
 
   return (
     <div className="correlations-tab">
-      {hasCorrelationData && (
-        <CorrelationMatrix correlationData={analytics.correlation_analysis} />
-      )}
-      
-      {hasAssociationData && (
+
+      {/* Always try rendering matrix */}
+      <CorrelationMatrix
+        correlationData={analytics?.correlation_analysis}
+      />
+
+      {/* Categorical Associations */}
+      {analytics?.categorical_associations?.strong_associations?.length > 0 && (
         <div className="categorical-associations">
           <h3>Categorical Associations</h3>
+
           <div className="associations-grid">
             {analytics.categorical_associations.strong_associations.map((assoc, index) => (
               <div key={index} className="association-card">
+
                 <div className="association-pair">
                   <span>{assoc.column1}</span>
                   <span>↔</span>
                   <span>{assoc.column2}</span>
                 </div>
+
                 <div className="association-strength">
                   Cramér's V: {assoc.cramers_v?.toFixed(3) || 'N/A'}
                 </div>
+
               </div>
             ))}
           </div>
         </div>
       )}
-      
-      {!hasCorrelationData && hasAssociationData && (
-        <div className="info-message">
-          <p>📊 Only categorical associations are available for this dataset. Numeric correlations require at least 2 numeric columns.</p>
-        </div>
-      )}
+
     </div>
   )
 }
