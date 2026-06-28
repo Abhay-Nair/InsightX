@@ -1,342 +1,92 @@
 import { useState } from 'react'
-import {
-  FiCpu,
-  FiMessageSquare,
-  FiAlertTriangle,
-  FiTrendingUp
-} from 'react-icons/fi'
-
-import ExplainDatasetButton from './ExplainDatasetButton'
+import { FiCpu, FiMessageSquare, FiAlertTriangle, FiTrendingUp, FiZap } from 'react-icons/fi'
 import './AiInsights.css'
 
 function AiInsights({ dataset, analytics }) {
   const [insights, setInsights] = useState(null)
   const [loading, setLoading] = useState(false)
-
-  // ---------------- DATASET TYPE DETECTION ----------------
-
-  const detectDatasetType = () => {
-    const columns = Object.keys(analytics?.columns || {}).map(c =>
-      c.toLowerCase()
-    )
-
-    // Healthcare
-    if (
-      columns.some(col =>
-        [
-          'patient',
-          'disease',
-          'bmi',
-          'blood_sugar',
-          'diet',
-          'exercise'
-        ].some(keyword => col.includes(keyword))
-      )
-    ) {
-      return 'healthcare'
-    }
-
-    // Travel
-    if (
-      columns.some(col =>
-        [
-          'travel',
-          'approval',
-          'destination',
-          'source_state'
-        ].some(keyword => col.includes(keyword))
-      )
-    ) {
-      return 'travel'
-    }
-
-    // Business
-    if (
-      columns.some(col =>
-        [
-          'revenue',
-          'profit',
-          'company',
-          'industry'
-        ].some(keyword => col.includes(keyword))
-      )
-    ) {
-      return 'business'
-    }
-
-    return 'general'
-  }
-
-  // ---------------- SUMMARY ----------------
-
-  const generateDatasetSummary = () => {
-    const rows = analytics?.summary?.total_rows || 0
-    const columns = analytics?.summary?.total_columns || 0
-    const healthScore = analytics?.health?.score || 0
-
-    const type = detectDatasetType()
-
-    if (type === 'healthcare') {
-      return `This healthcare dataset contains ${rows} patient records and ${columns} attributes including disease information, BMI, blood sugar levels, exercise plans, and diet recommendations. The dataset quality is excellent with a ${healthScore}% health score and no missing values detected. The dataset is suitable for healthcare analytics, disease trend analysis, lifestyle recommendation systems, and predictive health modeling.`
-    }
-
-    if (type === 'travel') {
-      return `This travel dataset contains ${rows} records with ${columns} attributes related to travel approvals, demographic information, and geographic movement patterns.`
-    }
-
-    if (type === 'business') {
-      return `This business dataset contains ${rows} records with ${columns} attributes suitable for business intelligence and market analysis.`
-    }
-
-    return `This dataset contains ${rows} rows and ${columns} columns with a data quality score of ${healthScore}%.`
-  }
-
-  // ---------------- COLUMN INSIGHTS ----------------
-
-  const generateColumnInsights = () => {
-    if (!analytics?.columns) return []
-
-    const insights = []
-
-    Object.entries(analytics.columns).forEach(([column, info]) => {
-      const col = column.toLowerCase()
-
-      if (col.includes('age')) {
-        insights.push({
-          type: 'info',
-          column,
-          message:
-            'Age data enables demographic analysis and age-based trend detection.'
-        })
-      }
-
-      if (col.includes('gender')) {
-        insights.push({
-          type: 'info',
-          column,
-          message: `${info.unique_count || 0} gender categories detected.`
-        })
-      }
-
-      if (col.includes('disease')) {
-        insights.push({
-          type: 'info',
-          column,
-          message:
-            'Disease categories can be used for medical trend and risk analysis.'
-        })
-      }
-
-      if (col.includes('bmi')) {
-        insights.push({
-          type: 'info',
-          column,
-          message:
-            'BMI values are useful for obesity and health risk assessment.'
-        })
-      }
-
-      if (col.includes('blood_sugar')) {
-        insights.push({
-          type: 'info',
-          column,
-          message:
-            'Blood sugar readings enable diabetes and metabolic health analysis.'
-        })
-      }
-
-      if (col.includes('exercise')) {
-        insights.push({
-          type: 'info',
-          column,
-          message:
-            'Exercise plans can help identify lifestyle recommendations across diseases.'
-        })
-      }
-
-      if (col.includes('diet')) {
-        insights.push({
-          type: 'info',
-          column,
-          message:
-            'Diet patterns can be correlated with diseases and BMI levels.'
-        })
-      }
-
-      if (info.missing_percentage > 20) {
-        insights.push({
-          type: 'warning',
-          column,
-          message: `High missing values detected (${info.missing_percentage}%).`
-        })
-      }
-    })
-
-    return insights.slice(0, 8)
-  }
-
-  // ---------------- ANOMALIES ----------------
-
-  const generateAnomalies = () => {
-    const anomalies = []
-
-    if (analytics?.summary?.total_rows < 50) {
-      anomalies.push({
-        type: 'warning',
-        title: 'Limited Sample Size',
-        description:
-          'Small dataset size may reduce statistical significance.'
-      })
-    }
-
-    const missingColumns = Object.values(analytics?.columns || {}).filter(
-      col => col.missing_percentage > 0
-    )
-
-    if (missingColumns.length > 0) {
-      anomalies.push({
-        type: 'warning',
-        title: 'Missing Values Detected',
-        description:
-          'Some columns contain missing data that may affect analysis.'
-      })
-    }
-
-    const outliers =
-      analytics?.outlier_analysis?.outlier_summary?.total_outliers || 0
-
-    if (outliers === 0) {
-      anomalies.push({
-        type: 'info',
-        title: 'No Significant Outliers',
-        description:
-          'The dataset appears well-balanced without extreme numeric anomalies.'
-      })
-    }
-
-    return anomalies
-  }
-
-  // ---------------- RECOMMENDATIONS ----------------
-
-  const generateRecommendations = () => {
-    const type = detectDatasetType()
-
-    if (type === 'healthcare') {
-      return [
-        'Analyze correlations between BMI and blood sugar levels.',
-        'Study disease distribution across age groups.',
-        'Build predictive models for diabetes risk detection.',
-        'Compare exercise plans against BMI categories.',
-        'Analyze dietary recommendations by disease type.',
-        'Visualize health trends using charts and dashboards.',
-        'Expand dataset size for stronger statistical analysis.',
-        'Use clustering techniques for patient segmentation.'
-      ]
-    }
-
-    if (type === 'travel') {
-      return [
-        'Analyze approval trends by region.',
-        'Create geographic travel heatmaps.',
-        'Identify demographic travel patterns.'
-      ]
-    }
-
-    if (type === 'business') {
-      return [
-        'Perform revenue trend analysis.',
-        'Compare profitability across sectors.',
-        'Analyze company growth patterns.'
-      ]
-    }
-
-    return [
-      'Perform exploratory data analysis.',
-      'Visualize numeric distributions.',
-      'Check feature correlations.'
-    ]
-  }
-
-  // ---------------- DOMAIN INSIGHTS ----------------
-
-  const generateDomainInsights = () => {
-    const type = detectDatasetType()
-
-    switch (type) {
-      case 'healthcare':
-        return [
-          {
-            title: 'Diabetes Trends',
-            insight:
-              'Patients with Diabetes show noticeably elevated blood sugar levels.'
-          },
-          {
-            title: 'BMI Analysis',
-            insight:
-              'Obesity cases are associated with BMI values above 30.'
-          },
-          {
-            title: 'Lifestyle Recommendations',
-            insight:
-              'Low Sugar and Low Carb diets are commonly assigned for metabolic conditions.'
-          },
-          {
-            title: 'Exercise Distribution',
-            insight:
-              'Walking, Yoga, and Strength Training are common recommendations.'
-          }
-        ]
-
-      case 'travel':
-        return [
-          {
-            title: 'Travel Patterns',
-            insight:
-              'Travel approval data enables demographic and regional trend analysis.'
-          }
-        ]
-
-      case 'business':
-        return [
-          {
-            title: 'Market Analysis',
-            insight:
-              'Financial metrics support operational benchmarking and market evaluation.'
-          }
-        ]
-
-      default:
-        return [
-          {
-            title: 'General Insights',
-            insight:
-              'Dataset structure supports exploratory and statistical analysis.'
-          }
-        ]
-    }
-  }
-
-  // ---------------- MAIN GENERATOR ----------------
+  const [error, setError] = useState(null)
 
   const generateInsights = async () => {
     setLoading(true)
+    setError(null)
 
-    await new Promise(resolve => setTimeout(resolve, 1200))
+    try {
+      // Build a rich context prompt from real analytics data
+      const summary = analytics?.summary || {}
+      const health = analytics?.health || {}
+      const columns = analytics?.columns || {}
+      const correlations = analytics?.correlation_analysis?.strong_correlations || []
+      const outliers = analytics?.outlier_analysis?.outlier_summary || {}
 
-    const generated = {
-      summary: generateDatasetSummary(),
-      columnInsights: generateColumnInsights(),
-      anomalies: generateAnomalies(),
-      recommendations: generateRecommendations(),
-      businessInsights: generateDomainInsights()
+      const columnDetails = Object.entries(columns).map(([name, info]) => {
+        const details = [`${name} (${info.type})`]
+        if (info.mean !== undefined) details.push(`mean=${info.mean?.toFixed(2)}`)
+        if (info.min !== undefined) details.push(`min=${info.min}`)
+        if (info.max !== undefined) details.push(`max=${info.max}`)
+        if (info.missing_percentage > 0) details.push(`${info.missing_percentage?.toFixed(1)}% missing`)
+        if (info.unique_count) details.push(`${info.unique_count} unique values`)
+        return details.join(', ')
+      }).join('\n')
+
+      const correlationText = correlations.length > 0
+        ? correlations.map(c => `${c.column1} ↔ ${c.column2}: ${c.correlation?.toFixed(3)}`).join(', ')
+        : 'None found'
+
+      const prompt = `You are an expert data analyst. Analyze this dataset and provide specific, actionable insights based on the ACTUAL numbers provided.
+
+DATASET: ${dataset?.filename}
+ROWS: ${summary.total_rows} | COLUMNS: ${summary.total_columns}
+HEALTH SCORE: ${health.score}% | MISSING VALUES: ${health.missing_percentage}% | DUPLICATES: ${health.duplicates}
+
+COLUMN STATISTICS:
+${columnDetails}
+
+STRONG CORRELATIONS: ${correlationText}
+OUTLIERS: ${outliers.total_outliers || 0} detected (${outliers.outlier_percentage?.toFixed(1) || 0}%) in ${outliers.affected_columns || 0} columns
+
+Provide a JSON response with this exact structure:
+{
+  "summary": "2-3 sentence overview mentioning specific numbers from the data",
+  "key_findings": [
+    {"title": "Finding title", "detail": "Specific insight with actual numbers"},
+    {"title": "Finding title", "detail": "Specific insight with actual numbers"},
+    {"title": "Finding title", "detail": "Specific insight with actual numbers"}
+  ],
+  "data_quality": "One sentence about data quality with specific percentages",
+  "recommendations": [
+    "Specific actionable recommendation based on the actual data",
+    "Specific actionable recommendation based on the actual data",
+    "Specific actionable recommendation based on the actual data"
+  ],
+  "watch_out": "One specific warning or concern about this dataset"
+}
+
+Only return the JSON, no markdown, no explanation.`
+
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-6',
+          max_tokens: 1000,
+          messages: [{ role: 'user', content: prompt }]
+        })
+      })
+
+      const data = await response.json()
+      const text = data.content?.[0]?.text || ''
+      const clean = text.replace(/```json|```/g, '').trim()
+      const parsed = JSON.parse(clean)
+      setInsights(parsed)
+
+    } catch (err) {
+      console.error('AI insights error:', err)
+      setError('Failed to generate insights. Please try again.')
+    } finally {
+      setLoading(false)
     }
-
-    setInsights(generated)
-    setLoading(false)
   }
-
-  // ---------------- EMPTY STATE ----------------
 
   if (!analytics) {
     return (
@@ -348,8 +98,6 @@ function AiInsights({ dataset, analytics }) {
     )
   }
 
-  // ---------------- UI ----------------
-
   return (
     <div className="ai-insights">
       <div className="insights-header">
@@ -357,120 +105,87 @@ function AiInsights({ dataset, analytics }) {
           <h3>AI-Powered Insights</h3>
           <p>Automated analysis and recommendations for your dataset</p>
         </div>
-
-        <ExplainDatasetButton
-          dataset={dataset}
-          onExplain={generateInsights}
-          loading={loading}
-        />
+        <button
+          className="explain-btn"
+          onClick={generateInsights}
+          disabled={loading}
+        >
+          {loading ? (
+            <><FiCpu className="spinning" /> Analyzing...</>
+          ) : (
+            <><FiZap /> Explain Dataset</>
+          )}
+        </button>
       </div>
+
+      {error && (
+        <div className="insight-card" style={{borderColor: '#ef4444'}}>
+          <p style={{color: '#ef4444'}}>{error}</p>
+        </div>
+      )}
 
       {insights ? (
         <div className="insights-content">
-
-          {/* SUMMARY */}
 
           <div className="insight-card summary-card">
             <div className="card-header">
               <FiMessageSquare />
               <h4>Dataset Summary</h4>
             </div>
-
-            <p className="summary-text">
-              {insights.summary}
-            </p>
+            <p className="summary-text">{insights.summary}</p>
           </div>
-
-          {/* DOMAIN INSIGHTS */}
 
           <div className="insight-card">
             <div className="card-header">
               <FiTrendingUp />
-              <h4>Domain Insights</h4>
-            </div>
-
-            <div className="business-insights">
-              {insights.businessInsights.map((item, index) => (
-                <div key={index} className="business-insight-item">
-                  <h5>{item.title}</h5>
-                  <p>{item.insight}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* COLUMN INSIGHTS */}
-
-          <div className="insight-card">
-            <div className="card-header">
-              <FiAlertTriangle />
-              <h4>Column Analysis</h4>
-            </div>
-
-            <div className="column-insights">
-              {insights.columnInsights.map((item, index) => (
-                <div
-                  key={index}
-                  className={`insight-item ${item.type}`}
-                >
-                  <div className="insight-column">
-                    {item.column}
-                  </div>
-
-                  <div className="insight-message">
-                    {item.message}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ANOMALIES */}
-
-          <div className="insight-card">
-            <div className="card-header">
-              <FiAlertTriangle />
               <h4>Key Findings</h4>
             </div>
-
-            <div className="anomalies-list">
-              {insights.anomalies.map((item, index) => (
-                <div
-                  key={index}
-                  className={`anomaly-item ${item.type}`}
-                >
+            <div className="business-insights">
+              {insights.key_findings?.map((item, index) => (
+                <div key={index} className="business-insight-item">
                   <h5>{item.title}</h5>
-                  <p>{item.description}</p>
+                  <p>{item.detail}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* RECOMMENDATIONS */}
+          <div className="insight-card">
+            <div className="card-header">
+              <FiAlertTriangle />
+              <h4>Data Quality</h4>
+            </div>
+            <p>{insights.data_quality}</p>
+          </div>
 
           <div className="insight-card">
             <div className="card-header">
               <FiTrendingUp />
               <h4>Recommendations</h4>
             </div>
-
             <ul className="recommendations-list">
-              {insights.recommendations.map((rec, index) => (
+              {insights.recommendations?.map((rec, index) => (
                 <li key={index}>{rec}</li>
               ))}
             </ul>
           </div>
+
+          {insights.watch_out && (
+            <div className="insight-card" style={{borderLeft: '4px solid #f59e0b'}}>
+              <div className="card-header">
+                <FiAlertTriangle style={{color: '#f59e0b'}} />
+                <h4>Watch Out</h4>
+              </div>
+              <p>{insights.watch_out}</p>
+            </div>
+          )}
+
         </div>
-      ) : (
+      ) : !loading && (
         <div className="insights-placeholder">
           <FiCpu className="placeholder-icon" />
-
           <h4>Generate AI Insights</h4>
-
-          <p>
-            Click "Explain Dataset" to generate intelligent
-            insights from your uploaded dataset.
-          </p>
+          <p>Click "Explain Dataset" to generate intelligent insights from your uploaded dataset.</p>
         </div>
       )}
     </div>
