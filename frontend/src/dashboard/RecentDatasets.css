@@ -10,6 +10,8 @@
   justify-content: center;
   transition: color 0.2s, background 0.2s;
   margin-right: 4px;
+  opacity: 1;
+  visibility: visible;
 }
 
 .delete-btn:hover {

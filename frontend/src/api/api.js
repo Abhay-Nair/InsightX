@@ -193,11 +193,6 @@ export const register = async (name, email, password) => {
   }
 };
 
-export const deleteDataset = async (datasetId) => {
-  const response = await api.delete(`/datasets/${datasetId}`)
-  return response.data
-}
-
 // Dataset functions with enhanced security
 export const uploadDataset = async (file) => {
   try {
