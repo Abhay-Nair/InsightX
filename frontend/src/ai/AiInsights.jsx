@@ -75,7 +75,7 @@ Only return the JSON, no markdown, no explanation.`
       })
 
       const data = await response.json()
-      const text = data.content?.[0]?.text || ''
+      const text = data.choices?.[0]?.message?.content || data.content?.[0]?.text || ''
       const clean = text.replace(/```json|```/g, '').trim()
       const parsed = JSON.parse(clean)
       setInsights(parsed)

@@ -304,3 +304,45 @@ async def refresh_analytics_cache(
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Cache refresh failed: {str(e)}")
+    
+from pydantic import BaseModel
+
+class AIInsightsRequest(BaseModel):
+    prompt: str
+
+@router.post("/{dataset_id}/ai-insights")
+async def get_ai_insights(
+    dataset_id: str,
+    request_data: AIInsightsRequest,
+    current_user: str = Depends(get_current_user)
+):
+    """Generate AI insights using Groq API (free)"""
+    try:
+        import httpx
+        import os
+
+        groq_key = os.getenv("GROQ_API_KEY")
+        if not groq_key:
+            raise HTTPException(status_code=500, detail="AI service not configured")
+
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {groq_key}"
+                },
+                json={
+                    "model": "llama-3.1-8b-instant",
+                    "max_tokens": 1000,
+                    "messages": [{"role": "user", "content": request_data.prompt}]
+                },
+                timeout=30.0
+            )
+            return response.json()
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"AI insights error: {e}")
+        raise HTTPException(status_code=500, detail=f"AI insights failed: {str(e)}")
