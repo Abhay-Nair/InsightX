@@ -1,3 +1,4 @@
+import api from '../api/api'
 import { useState } from 'react'
 import { FiCpu, FiMessageSquare, FiAlertTriangle, FiTrendingUp, FiZap } from 'react-icons/fi'
 import './AiInsights.css'
@@ -64,17 +65,10 @@ Provide a JSON response with this exact structure:
 
 Only return the JSON, no markdown, no explanation.`
 
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-6',
-          max_tokens: 1000,
-          messages: [{ role: 'user', content: prompt }]
-        })
+      const apiResponse = await api.post(`/analytics/${dataset.dataset_id}/ai-insights`, {
+        prompt: prompt
       })
-
-      const data = await response.json()
+      const data = apiResponse.data
       const text = data.choices?.[0]?.message?.content || data.content?.[0]?.text || ''
       const clean = text.replace(/```json|```/g, '').trim()
       const parsed = JSON.parse(clean)
