@@ -75,7 +75,7 @@ function Dashboard() {
         <div className="dashboard-grid">
           <div className="dashboard-main">
             <DatasetUpload onUploadSuccess={handleDatasetUploaded} />
-            <RecentDatasets datasets={datasets.slice(0, 5)} />
+            <RecentDatasets datasets={datasets.slice(0, 5)} onDatasetDeleted={handleDatasetUploaded} />
           </div>
           
           <div className="dashboard-sidebar">

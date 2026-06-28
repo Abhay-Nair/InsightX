@@ -1,3 +1,22 @@
+.delete-btn {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, background 0.2s;
+  margin-right: 4px;
+}
+
+.delete-btn:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
 .recent-datasets {
   background: var(--surface);
   border: 1px solid #1f2547;
