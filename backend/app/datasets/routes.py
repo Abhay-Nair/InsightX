@@ -148,6 +148,8 @@ def get_dataset_preview(
         else:
             df = pd.read_excel(io.BytesIO(response.content), nrows=10)
 
+        df = df.where(pd.notnull(df), None)
+
         return {
             "dataset_id": dataset_id,
             "columns": df.columns.tolist(),
